@@ -8,10 +8,9 @@ import org.springframework.core.annotation.Order;
 public class StoreApplication {
 
 	public static void main(String[] args) {
-
-		var paymentService = new Paypal();
 		//SpringApplication.run(StoreApplication.class, args);
-		var orderService = new OrderService(paymentService);
+		var orderService = new OrderService();
+		orderService.setPaymentService(new Stripe());
 		orderService.placeOrder();
 	}
 }
